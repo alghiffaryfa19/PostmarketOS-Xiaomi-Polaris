@@ -326,6 +326,15 @@ while True:
     elif re.search(r"Install systemd\? \(default/always/never\) \[(default|always|never)\]:", last_line):
         answer, desc = systemd, "systemd"
 
+    elif re.search(r"Which service manager should be used\? \(default/openrc/systemd\) \[[^\]]*\]:", last_line):
+        if systemd == "always":
+            ans = "systemd"
+        elif systemd == "never":
+            ans = "openrc"
+        else:
+            ans = "default"
+        answer, desc = ans, "service manager"
+
     elif re.search(r"Change them\? \(y/n\) \[n\]:", last_line):
         answer, desc = "", "Change additional options"
 
