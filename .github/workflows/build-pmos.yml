@@ -215,7 +215,7 @@ jobs:
           # pmbootstrap is NOT published on PyPI — install from upstream Git.
           # Pin to a known-good release tag for reproducibility.
           # (Bump this tag when a new pmbootstrap release comes out.)
-          PMBOOTSTRAP_VERSION="master"
+          PMBOOTSTRAP_VERSION="main"
 
           python3 -m venv /opt/pmbootstrap-venv
           /opt/pmbootstrap-venv/bin/pip install --upgrade pip setuptools wheel
