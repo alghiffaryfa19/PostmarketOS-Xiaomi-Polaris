@@ -271,6 +271,9 @@ while True:
         if proc.poll() is not None:
             print(f"\n[init] pmbootstrap exited (returncode={proc.returncode})", flush=True)
             break
+        if "DONE!" in text:
+            print(f"\n[init] pmbootstrap finished (DONE! detected)", flush=True)
+            break
         print(f"\n[init] ERROR: timeout or no prompt seen", file=sys.stderr, flush=True)
         print(f"[init] last 1000 chars: {text[-1000:]}", file=sys.stderr, flush=True)
         sys.exit(1)
