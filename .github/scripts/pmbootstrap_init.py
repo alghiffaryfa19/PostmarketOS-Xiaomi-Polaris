@@ -356,6 +356,10 @@ while True:
         # Always answer "y" to zap and apply the new config.
         answer, desc = "y", "Zap existing chroots"
 
+    elif re.search(r"Continue\? \(y/n\) \[n\]:", last_line):
+        # This prompt appears when selecting an archived device
+        answer, desc = "y", "Continue (archived device)"
+
     else:
         # Unknown prompt — print it and fail with context
         print(f"\n[init] ERROR: unrecognized prompt", file=sys.stderr, flush=True)
