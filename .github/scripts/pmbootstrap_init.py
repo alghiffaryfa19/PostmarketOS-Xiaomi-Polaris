@@ -123,7 +123,7 @@ cfg["pmbootstrap"] = {
     "keymap": "",
     "extra_packages": extras_str,
     "hostname": HOSTNAME,
-    "boot_size": "256",
+    "boot_size": "512",
     "parallel_jobs": "16",
     "ccache_size": "5G",
     "sudo_timer": "false",
