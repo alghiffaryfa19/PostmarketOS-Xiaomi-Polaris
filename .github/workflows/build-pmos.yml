@@ -99,7 +99,7 @@ on:
           - never
 
       extra_packages:
-        description: 'Extra packages to install (comma-separated). Chinese fonts are ALWAYS added automatically.'
+        description: 'Extra packages to install (comma-separated). International fonts are ALWAYS added automatically.'
         required: false
         default: ''
         type: string
@@ -159,13 +159,13 @@ jobs:
           systemd:          ${{ inputs.systemd_install }}
           UI extra pkgs:    ${{ inputs.enable_ui_extra }}
           Extra packages:   ${{ inputs.extra_packages }}
-          Chinese fonts:    font-noto-cjk, font-wqy-zenhei (auto-added)
+          International fonts: font-noto, font-noto-emoji (auto-added)
           FDE:              ${{ inputs.enable_fde }}
           Device password:  ${{ inputs.device_password }}  <<< CHANGE THIS AFTER FIRST BOOT!
           Recovery zip:     ${{ inputs.build_recovery_zip }}
           Force clean:      ${{ inputs.force_clean }}
-          Locale:           zh_CN.UTF-8
-          Timezone:         Asia/Shanghai
+          Locale:           en_US.UTF-8
+          Timezone:         Asia/Jakarta
           ===============================================
           EOF
 
@@ -190,12 +190,12 @@ jobs:
           echo "=== After cleanup ==="
           df -h /
 
-      - name: Set runner timezone to Asia/Shanghai
+      - name: Set runner timezone to Asia/Jakarta
         run: |
-          sudo timedatectl set-timezone Asia/Shanghai
+          sudo timedatectl set-timezone Asia/Jakarta
           timedatectl
           # Also export TZ so Python and pmbootstrap see it
-          echo "TZ=Asia/Shanghai" >> $GITHUB_ENV
+          echo "TZ=Asia/Jakarta" >> $GITHUB_ENV
 
       - name: Install system dependencies
         run: |
@@ -215,7 +215,7 @@ jobs:
           # pmbootstrap is NOT published on PyPI — install from upstream Git.
           # Pin to a known-good release tag for reproducibility.
           # (Bump this tag when a new pmbootstrap release comes out.)
-          PMBOOTSTRAP_VERSION="3.10.3"
+          PMBOOTSTRAP_VERSION="master"
 
           python3 -m venv /opt/pmbootstrap-venv
           /opt/pmbootstrap-venv/bin/pip install --upgrade pip setuptools wheel
@@ -443,10 +443,10 @@ jobs:
           Recovery zip:     ${{ inputs.build_recovery_zip }}
 
           Extra packages:   ${{ inputs.extra_packages }}
-          Chinese fonts:    font-noto-cjk, font-wqy-zenhei
+          International fonts: font-noto, font-noto-emoji
 
-          Locale:           zh_CN.UTF-8
-          Timezone:         Asia/Shanghai
+          Locale:           en_US.UTF-8
+          Timezone:         Asia/Jakarta
           Hostname:         xiaomi-polaris
 
           *** IMPORTANT — DEVICE PASSWORD ***

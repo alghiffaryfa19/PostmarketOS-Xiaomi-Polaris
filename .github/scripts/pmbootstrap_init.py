@@ -56,16 +56,13 @@ extra_packages = _env("PMOS_EXTRA_PACKAGES", "")
 VENDOR = "xiaomi"
 DEVICE = "polaris"
 
-LOCALE   = "zh_CN"
-TIMEZONE = "Asia/Shanghai"
+LOCALE   = "en_US"
+TIMEZONE = "Asia/Jakarta"
 HOSTNAME = "xiaomi-polaris"
 
-CHINESE_FONTS = [
-    "font-noto-cjk",         # Noto CJK (most comprehensive — covers all CJK characters)
-    "font-wqy-zenhei",       # 文泉驿正黑 (lighter fallback)
-    # NOTE: font-wqy-microhei was removed from Alpine Linux and no longer
-    # exists in the APKINDEX. Do NOT add it — pmbootstrap will fail with
-    # "Could not find it in pmaports or any APKINDEX!".
+INTERNATIONAL_FONTS = [
+    "font-noto",             # Noto fonts for international languages
+    "font-noto-emoji",       # Emoji support
 ]
 
 
@@ -76,7 +73,7 @@ def build_extra_packages() -> str:
             p = p.strip()
             if p and p not in extras:
                 extras.append(p)
-    for font in CHINESE_FONTS:
+    for font in INTERNATIONAL_FONTS:
         if font not in extras:
             extras.append(font)
     return ",".join(extras) if extras else "none"
